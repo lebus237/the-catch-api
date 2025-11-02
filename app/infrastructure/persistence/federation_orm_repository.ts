@@ -7,7 +7,7 @@ export class FederationOrmRepository extends ActiveRecordManager implements Fede
     const activeRecord = await this.getActiveRecord(Federation)
 
     if (entity.getId()) {
-      await activeRecord.updateOrCreate(entity.getId(), entity)
+      await activeRecord.updateOrCreate({ id: entity.getId() }, entity)
     } else {
       await activeRecord.create(entity)
     }

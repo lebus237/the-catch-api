@@ -17,8 +17,16 @@ export default class FederationController {
     return response.created()
   }
 
+  async update({ response, request, params }: HttpContext) {
+    const { name, description, headOffice, logo, slug, website } = request.body()
+    await this.repository.save(
+      new Federation(params.id, name, description, headOffice, logo, slug, null, null, website)
+    )
+
+    return response.noContent()
+  }
+
   async getById({ response, params }: HttpContext) {
-    console.log(params.id)
     const federation = await this.repository.findBy(params.id)
 
     return response.ok({ data: federation })

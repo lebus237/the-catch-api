@@ -22,6 +22,7 @@ router
     router
       .group(() => {
         router.post('/create', [FederationController, 'create'])
+        router.patch('/:id/update', [FederationController, 'update'])
         router.get('/:id', [FederationController, 'getById'])
       })
       .prefix('/federation')
